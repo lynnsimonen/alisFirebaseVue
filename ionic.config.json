@@ -1,0 +1,7 @@
+{
+  "name": "alisFirebaseVue",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
