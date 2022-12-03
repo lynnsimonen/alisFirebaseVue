@@ -1,12 +1,18 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
-import TabsPage from '../views/TabsPage.vue'
-import Create from '../views/Create.vue'
-import Read from '../views/Read.vue'
-import Update from '../views/Update.vue'
+import TabsPage from '../views/Tabs/TabsPage.vue'
+import Create from '../views/CRUDPages/Create.vue'
+import Read from '../views/CRUDPages/Read.vue'
+import Update from '../views/CRUDPages/Update.vue'
+
 
 const routes: Array<RouteRecordRaw> = [
-   {
+
+  {
+    path: '/eventsandmore/:id',
+    component: () => import('@/views/Tabs/EventDetailsPage.vue')
+  },
+  {
     path: '/create',
     name: 'CreateItem',
     component: Create,
@@ -24,28 +30,33 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/',
-    redirect: '/tabs/tab1'
+    redirect: '/alis/home'
   },
+  
   {
-    path: '/tabs/',
+    path: '/alis/',
     component: TabsPage,
     children: [
       {
         path: '',
-        redirect: '/tabs/tab1'
+        redirect: '/alis/home'
       },
       {
-        path: 'tab1',
-        component: () => import('@/views/Tab1Page.vue')
+        path: 'home',
+        component: () => import('@/views/Tabs/Tab1Page.vue')
       },
       {
-        path: 'tab2',
-        component: () => import('@/views/Tab2Page.vue')
+        path: 'ordermenu',
+        component: () => import('@/views/Tabs/Tab2Page.vue')
       },
       {
-        path: 'tab3',
-        component: () => import('@/views/Tab3Page.vue')
-      }
+        path: 'eventsandmore',
+        component: () => import('@/views/Tabs/Tab3Page.vue')
+      },
+      {
+        path: "account",
+        component: () => import("@/views/Tabs/Tab4Page.vue"),
+      },
     ]
   }
 ]

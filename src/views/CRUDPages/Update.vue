@@ -2,7 +2,7 @@
     <ion-page>
       <ion-header :translucent="true">
         <ion-toolbar>
-          <ion-title >Add Users</ion-title>
+          <ion-title >Update User</ion-title>
         </ion-toolbar>
       </ion-header>
       
@@ -10,42 +10,50 @@
   
         <ion-row>
             <ion-col>
-              <ion-input type="email" v-model="username" placeholder="Enter Username"  class="input" padding-horizontal></ion-input>
+              <ion-input 
+              type ="email" 
+              v-model="usersData.username" 
+              placeholder="Enter Username"  
+              class="input" 
+              padding-horizontal></ion-input>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col>
-              <ion-input type="password" v-model="password" placeholder="Enter Password"  class="input"
+              <ion-input type="password" v-model="usersData.password" placeholder="Enter Password"  class="input"
                 padding-horizontal></ion-input>
             </ion-col>
         </ion-row>
   
   
         <div class="container">
-          <ion-button @click="createOperation()">Save Data</ion-button>
+          <ion-button @click="updateOperation()">Update Data</ion-button>
         </div>
   
-        <div class="container">
-          <ion-button @click="getOperation()">View Data</ion-button>
-        </div>
   
       </ion-content>
     </ion-page>
   </template>
   
     <script lang="ts">
-    import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCol, IonInput, IonRow, IonImg, IonButton, useIonRouter } from '@ionic/vue';
+    import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCol, IonInput, IonRow, IonImg, IonButton, useIonRouter, } from '@ionic/vue';
     import { defineComponent } from 'vue';
     import { useRouter } from 'vue-router';
-    import firebaseService from '../firebase-service';
+    import firebaseService from '../../firebase-service';
     export default defineComponent({
       data() {
-        return  { username: '', password: ''}
+        return  { usersData: {}}
       },
-      name: 'CreateItem',
+      props: ['id'],
+      name: 'UpdateItem',
       setup() {
         const router = useRouter();
         return {router};
+      },
+      created() {
+          firebaseService().findIdForDoc('Users', this.id).then((user) => {
+          this.usersData = user;
+      })
       },
       components: {
         IonContent,
@@ -59,17 +67,11 @@
         IonInput
       },
       methods: {
-        async createOperation() {
-          const userObject = {
-            username: this.username,
-            password: this.password
-          }
-          console.log('Data', this.username, this.password);
-          const UsersData = await firebaseService().createOperation('Users', userObject);
-        },
-        getOperation() {
+        async updateOperation() {
+          // console.log(this.usersData);
+          const updated = await firebaseService().updateOperation('Users', this.usersData);
           this.router.push('/read');
-        }
+        },
       }
     });
     </script>
