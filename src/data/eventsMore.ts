@@ -27,7 +27,7 @@ export interface Events {
     {
         eventName: 'Celebrate Chilean Independence Day',
         eventDate: '2023-09-18',
-        details: 'A great evening with friends cooking up empanadas and enjoying the delicious meal afterwards.',
+        details: 'A great evening with friends cooking and enjoying the delicious meal together.',
         sourceLink: 'https://www.youtube.com/watch?v=sIVArBVb_II',
         image: 'https://data1.ibtimes.co.in/photo/en/full/99685/chile-independence-day-wishes.jpg?w=800',
         id: 2

@@ -1,19 +1,32 @@
 <template>
   <ion-page>
     <ion-header>
-      <ion-toolbar>
+      <div>
         <ion-buttons slot="start">
           <ion-back-button page-default-back-link="/"></ion-back-button>
+          <ion-title><h2>Event Details</h2></ion-title>
         </ion-buttons>
-        <ion-title><h6>Ali's Chilean Restaurant</h6></ion-title>
-      </ion-toolbar>
+      </div>
     </ion-header>
-    <ion-content :fullscreen="true">
+    <ion-content>
       <div id="container">
-        <ion-img :src="image" alt="image of event"></ion-img>
-        <h2 class="ion-text-center">{{ eventName }}</h2>
-        <p class="ion-text-center">{{ details }}</p>
-        <h3 class="ion-text-center">{{ eventDate }}</h3>
+        <div class="picture">
+          <ion-img :src="events?.image" alt="image of event"></ion-img>
+        </div>
+        <h1 class="ion-text-center">{{ events?.eventName }}</h1>
+        <p class="ion-text-center">
+          {{ events?.details
+          }}<a
+            target="_blank"
+            href="https://www.youtube.com/watch?v=sIVArBVb_II"
+            rel="noopener"
+            class="ion-text-center"
+          >
+            Click to watch cooking demo.</a
+          >
+        </p>
+
+        <h5 class="ion-text-center">Event Date: {{ events?.eventDate }}</h5>
       </div>
     </ion-content>
   </ion-page>
@@ -26,7 +39,6 @@ import {
   IonImg,
   IonPage,
   IonHeader,
-  IonToolbar,
   IonTitle,
   IonContent,
   IonBackButton,
@@ -42,7 +54,6 @@ export default {
     IonImg,
     IonPage,
     IonHeader,
-    IonToolbar,
     IonTitle,
     IonContent,
     IonBackButton,
@@ -58,3 +69,12 @@ export default {
   },
 };
 </script>
+
+<style>
+p {
+  padding: 10px;
+}
+.picture {
+  margin-top: 65px;
+}
+</style>
