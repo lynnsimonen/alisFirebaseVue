@@ -1,7 +1,6 @@
 <template>
-  <ion-page>
-    <ion-content :fullscreen="true">
-      <h3 class="createUser">Create User</h3>
+  <base-header>
+      <h3 class="userCrud">Create User</h3>
       <ion-row>
         <ion-col>
           <ion-input
@@ -32,21 +31,16 @@
       <div class="container">
         <ion-button @click="getOperation()">View Data</ion-button>
       </div>
-    </ion-content>
-  </ion-page>
+  </base-header>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import {
-  IonPage,
-  IonContent,
   IonCol,
   IonInput,
   IonRow,
-  IonImg,
   IonButton,
-  useIonRouter,
 } from "@ionic/vue";
 
 import { useRouter } from "vue-router";
@@ -62,8 +56,6 @@ export default defineComponent({
     return { router };
   },
   components: {
-    IonContent,
-    IonPage,
     IonButton,
     IonRow,
     IonCol,
@@ -92,9 +84,11 @@ export default defineComponent({
 ion-input.input {
   --background: rgb(245, 238, 238);
 }
-.createUser {
+.userCrud {
+  vertical-align: text-bottom;
   margin-top: 150px;
   margin-left: 5px;
+  font-weight: bolder;  
 }
 .container {
   flex: 1;

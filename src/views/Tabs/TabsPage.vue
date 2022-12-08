@@ -1,20 +1,6 @@
 <template>
   <ion-page>
-    <ion-header>
-      <ion-label1>
-        <strong>Ali's Chilean Restaurant </strong>        
-      </ion-label1>
-      <div>
-        <p>
-          <ion-icon :icon="call"> </ion-icon>
-          262-334-5476
-        </p>
-        <p>
-          <ion-icon :icon="location"> </ion-icon>
-          <a target="_blank" href="https://www.google.com/maps/place/17700+W+Capitol+Dr,+Brookfield,+WI+53045/@43.0914368,-88.1350884,17z/data=!3m1!4b1!4m5!3m4!1s0x880500d75de63091:0x5764ba1e48c99bc6!8m2!3d43.0914368!4d-88.1328944" rel="noopener">17700 W Capitol Dr., Brookfield, WI 53045</a>
-        </p>
-      </div>
-    </ion-header>
+    
     <ion-tabs>
       <ion-router-outlet></ion-router-outlet>
       <ion-tab-bar slot="bottom" color="black">

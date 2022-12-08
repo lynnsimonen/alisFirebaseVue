@@ -1,26 +1,5 @@
 <template>
-  <ion-page>
-    <ion-header>
-      <ion-label1>
-        <strong>Ali's Chilean Restaurant </strong>
-      </ion-label1>
-      <div>
-        <p>
-          <ion-icon :icon="call"> </ion-icon>
-          262-334-5476
-        </p>
-        <p>
-          <ion-icon :icon="location"> </ion-icon>
-          <a
-            target="_blank"
-            href="https://www.google.com/maps/place/17700+W+Capitol+Dr,+Brookfield,+WI+53045/@43.0914368,-88.1350884,17z/data=!3m1!4b1!4m5!3m4!1s0x880500d75de63091:0x5764ba1e48c99bc6!8m2!3d43.0914368!4d-88.1328944"
-            rel="noopener"
-            >17700 W Capitol Dr., Brookfield, WI 53045</a
-          >
-        </p>
-      </div>
-    </ion-header>
-    <ion-content>
+ <base-header>
       <h3 class="viewUsers">View Users</h3>
       <ion-list>
         <ion-item v-for="(item, index) in usersList" :key="index">
@@ -28,7 +7,7 @@
           <ion-button
             size="small"
             slot="end"
-            @click="updateOperation(item, index)"
+            @click="() => router.push('/alis/update/:item')"
             >update</ion-button
           >
           <ion-button
@@ -45,18 +24,19 @@
           </ion-button>
         </ion-item>
       </ion-list>
-    </ion-content>
-  </ion-page>
+      <ion-button size="small" @click="() => router.push('/alis/account')">Go back to accounts page</ion-button>
+ </base-header>
 </template>
 
 <script lang="ts">
-import { IonContent, IonHeader, IonPage, IonIcon } from "@ionic/vue";
+import {IonIcon, IonButton, } from "@ionic/vue";
 import { defineComponent } from "vue";
 import { useRouter } from "vue-router";
 import firebaseService from "../../firebase-service";
 import { call, location, trash } from "ionicons/icons";
 
 export default defineComponent({
+  props: ["username"],
   data() {
     return { usersList: [] };
   },
@@ -71,10 +51,9 @@ export default defineComponent({
       this.usersList = data;
     });
   },
-  components: {
-    IonPage,
-    IonContent,
+  components: {   
     IonIcon,
+    IonButton, 
   },
   methods: {
     async updateOperation(item: any, index: any) {
@@ -86,7 +65,7 @@ export default defineComponent({
 
       this.$router.push({ name: "Update", params: { id: data.username } });
     },
-    deleteOperation(item: any, index: any) {
+    deleteOperation(item: any, index: number) {
       console.log(item);
       this.usersList.splice(index, 1);
       firebaseService().deleteOperation("Users", item.username);

@@ -1,8 +1,5 @@
-<template>
-  <ion-page>  
-
-    <ion-content :fullscreen="true">
-      <h1>Create User</h1>
+ <template>
+  <base-subheader pageTitle="Create User">
       <ion-row>
         <ion-col>
           <ion-input
@@ -32,25 +29,22 @@
 
       <div class="container">
         <ion-button @click="getOperation()">View Data</ion-button>
-      </div>
-    </ion-content>
-  </ion-page>
+      </div>  
+  </base-subheader> 
 </template>
 
 <script lang="ts">
+
 import {
-  IonContent, 
-  IonPage,  
   IonCol,
   IonInput,
   IonRow,
-  IonImg,
   IonButton,
-  useIonRouter,
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import { useRouter } from "vue-router";
 import firebaseService from "../../firebase-service";
+
 export default defineComponent({
   data() {
     return { username: "", password: "" };
@@ -61,13 +55,11 @@ export default defineComponent({
     return { router };
   },
   components: {
-    IonContent,    
-    IonPage,   
     IonButton,
     IonRow,
     IonCol,
     IonInput,
-  },
+},
   methods: {
     async createOperation() {
       const userObject = {
@@ -88,6 +80,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
+
 .container {
   flex: 1;
   display: flex;
@@ -95,5 +88,9 @@ export default defineComponent({
   justify-content: center;
   align-content: center;
   margin-top: 12px;
+}
+.createUser {
+  margin-top: 150px;
+  margin-left: 5px;
 }
 </style>
